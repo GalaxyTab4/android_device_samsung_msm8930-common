@@ -1,5 +1,0 @@
-recovery_only(`
-    # Read files on /sdcard
-    allow recovery sdcard_type:dir r_dir_perms;
-    allow recovery sdcard_type:file r_file_perms;
-')

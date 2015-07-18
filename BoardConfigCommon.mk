@@ -37,10 +37,8 @@ BOARD_CHARGING_CMDLINE_NAME := "androidboot.bootchg"
 BOARD_CHARGING_CMDLINE_VALUE := "true"
 
 # Display
+BOARD_EGL_CFG := device/samsung/msm8930-common/configs/egl.cfg
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-
-# Renderscript
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -79,5 +77,32 @@ WPA_SUPPLICANT_VERSION           := VER_0_8_X
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_DRIVER_FW_PATH_AP           := "ap"
 
-# Include SE policies
--include device/samsung/msm8930-common/sepolicy/Android.mk
+# Include common SE policies
+-include device/qcom/sepolicy/sepolicy.mk
+
+BOARD_SEPOLICY_DIRS += device/samsung/msm8930-common/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    file.te \
+    file_contexts \
+    init_shell.te \
+    init.te \
+    insthk.te \
+    kernel.te \
+    mediaserver.te \
+    mm-qcamerad.te \
+    mpdecision.te \
+    property_contexts \
+    property.te \
+    qseecomd.te \
+    rild.te \
+    rmt_storage.te \
+    sysinit.te \
+    system_app.te \
+    system_server.te \
+    thermal-engine.te \
+    thermald.te \
+    time_daemon.te \
+    untrusted_app.te \
+    vold.te \
+    wcnss_service.te
